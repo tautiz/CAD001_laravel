@@ -13,19 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->text('description');
-            $table->string('image');
-            $table->integer('category_id');
-            $table->integer('brand_id');
-            $table->string('color');
-            $table->string('size');
+            $table->text('description')->nullable();
+            $table->string('image')->nullable();
+            $table->unsignedBigInteger('category_id');
+            $table->string('color')->nullable();
+            $table->string('size')->nullable();
             $table->string('price');
-            $table->string('status');
+            $table->unsignedBigInteger('status_id');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('status_id')->references('id')->on('statuses');
         });
     }
 

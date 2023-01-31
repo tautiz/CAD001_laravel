@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Status;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -16,8 +16,6 @@ class CategoriesSeed extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->truncate();
-
         $categories = [
             [
                 'name' => 'Elektronika',
@@ -88,15 +86,19 @@ class CategoriesSeed extends Seeder
         ];
 
         foreach ($categories as $cat) {
-            $category = new Category();
-            $category->name = $cat['name'];
-            $category->slug = $cat['slug'];
-            $category->description = $cat['description'];
-            $category->image = $cat['image'];
-            $category->status = '1';
-            $category->parent_id = null;
-            $category->sort_order = '1';
-            $category->save();
+
+            Category::updateOrCreate(
+                [
+                    'name' => $cat['name'],
+                    'slug' => $cat['slug'],
+                ],
+                [
+                    'description' => $cat['description'],
+                    'image' => $cat['image'],
+                    'status_id' => Status::where(['name' => 'Aktyvus', 'type'=>'product'])->first()->id,
+                    'parent_id' => null,
+                ]
+            );
         }
     }
 }
