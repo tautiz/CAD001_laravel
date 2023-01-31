@@ -1,0 +1,31 @@
+version: '3.3'
+services:
+  web:
+    image: tautiz/web4study
+    volumes:
+      - ./laravel_failai:/var/www/html/
+    ports:
+      - 80:80
+    depends_on:
+      - db
+    environment:
+      APACHE_SERVER_NAME: laravel.local
+      APPLICATION_ENV: development
+
+  db:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - myapp:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: devuser
+      MYSQL_PASSWORD: devpass
+
+volumes:
+  myapp:
+    external: false
