@@ -18,11 +18,11 @@ class ProductFactory extends Factory
             'slug' => fake()->slug(),
             'description' => fake()->text(),
             'image' => fake()->word(),
-            'category_id' => fake()->randomNumber(),
+            'category_id' => fake()->randomNumber(1),
             'color' => fake()->word(),
             'size' => fake()->word(),
             'price' => fake()->randomNumber(),
-            'status_id' => fake()->randomNumber(),
+            'status_id' => fake()->randomNumber(1),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
