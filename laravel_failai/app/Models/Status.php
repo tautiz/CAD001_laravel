@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $type
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @method static where(string[] $array)
  */
 class Status extends Model
 {

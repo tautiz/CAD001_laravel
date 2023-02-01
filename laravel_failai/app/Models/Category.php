@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $sort_order
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @method static updateOrCreate(string[] $array, array $array1)
  */
 class Category extends Model
 {
