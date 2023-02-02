@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 
 Route::get('/product/{id}', function ($id) {
-    return Product::firstOrCreate(
+    $product = Product::firstOrCreate(
         [
             'id' => $id
         ],
@@ -37,10 +37,12 @@ Route::get('/product/{id}', function ($id) {
             'size' => 'XL'
         ]
     );
+
+    return $product;
 });
 
 Route::get('/products', function () {
-    return Product::all();
+    return Product::query()->with('category')->get();
 });
 
 Route::get('/products-del', function () {
@@ -68,3 +70,4 @@ Route::get('/new-product', function () {
     dd($product);
 
 });
+
