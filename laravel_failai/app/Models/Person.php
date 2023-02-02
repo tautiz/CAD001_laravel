@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
@@ -13,7 +15,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $email
  * @property string $phone
  * @property int $user_id
+ * @property User $user
  * @property int $address_id
+ * @property Address $address
  * @property string $created_at
  * @property string $updated_at
  */
@@ -33,4 +37,24 @@ class Person extends Model
         'email',
         'phone',
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function address(): BelongsTo
+    {
+        return $this->belongsTo(Address::class);
+    }
+
+    public function addresses(): HasMany
+    {
+        return $this->hasMany(Address::class);
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
 }

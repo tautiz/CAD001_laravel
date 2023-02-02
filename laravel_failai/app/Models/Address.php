@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $type
  * @property string $additional_info
  * @property int $user_id
+ * @property User $user
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
@@ -39,4 +40,9 @@ class Address extends Model
         'additional_info',
         'user_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

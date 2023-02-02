@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Order;
 use App\Models\Product;
 use Database\Factories\ProductFactory;
 use Illuminate\Support\Facades\Route;
@@ -42,7 +43,7 @@ Route::get('/product/{id}', function ($id) {
 });
 
 Route::get('/products', function () {
-    return Product::query()->with('category')->get();
+    return Product::query()->with(['category', 'status'])->get();
 });
 
 Route::get('/products-del', function () {
@@ -69,5 +70,9 @@ Route::get('/new-product', function () {
 
     dd($product);
 
+});
+
+Route::get('/order/{order}', function (Order $order) {
+    return $order->products;
 });
 
