@@ -21,4 +21,16 @@ use Illuminate\Database\Eloquent\Model;
 class OrderDetails extends Model
 {
     use HasFactory;
+
+    protected $guarded = [
+        'price',
+        'status_id',
+    ];
+
+    protected $fillable = [
+        'order_id',
+        'product_name',
+        'product_id',
+        'quantity',
+    ];
 }

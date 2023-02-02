@@ -50,5 +50,21 @@ Route::get('/products-del', function () {
 });
 
 Route::get('/new-product', function () {
-    return ProductFactory::new()->create();
+
+    $duomenys = [
+        'name' => 'Apple',
+        'category_id' => 5,
+        'price' => 1000,
+        'status_id' => 5,
+        'slug' => 'apple',
+        'description' => 'Mmmm..',
+        'image' => 'london-to-paris.jpg',
+        'color' => 'red',
+        'size' => 'XL',
+    ];
+
+    $product  = Product::create($duomenys);
+
+    dd($product);
+
 });
