@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ProductsController;
 use App\Models\Order;
 use App\Models\Product;
 use Database\Factories\ProductFactory;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,29 +23,28 @@ Route::get('/', function () {
 });
 
 
-Route::get('/product/{id}', function ($id) {
-    $product = Product::firstOrCreate(
-        [
-            'id' => $id
-        ],
-        [
-            'name' => 'Londonas to Paris',
-            'category_id' => 5,
-            'price' => 1000,
-            'status_id' => 5,
-            'slug' => 'london-to-parisasdfgh',
-            'description' => 'London to Paris',
-            'image' => 'london-to-paris.jpg',
-            'color' => 'red',
-            'size' => 'XL'
-        ]
-    );
+Route::get('/product/new', function () {
 
-    return $product;
+    $forma = '
+        <form action="/product" method="POST">
+            <input type="text" name="inputas1">
+            <input type="text" name="inputas2">
+            <input type="submit" value="SEND">
+        </form>
+    ';
+
+    return $forma;
 });
+
+
+Route::get('/product/{product}', [ProductsController::class, 'show']);
 
 Route::get('/products', function () {
     return Product::query()->with(['category', 'status'])->get();
+});
+
+Route::post('/product', function (Request $request) {
+    return $request->all();
 });
 
 Route::get('/products-del', function () {
