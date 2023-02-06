@@ -9,7 +9,9 @@ class ProductsController extends Controller
 {
     public function index()
     {
-        return Product::query()->with(['category', 'status'])->get();
+        $products =  Product::query()->with(['category', 'status'])->get();
+
+        return view('products.index', compact('products'));
     }
 
     public function create()
@@ -25,7 +27,8 @@ class ProductsController extends Controller
 
     public function show(Product $product)
     {
-        return $product;
+        return view('products.show', ['product' => $product]);;
+
     }
 
     public function edit(Product $product)

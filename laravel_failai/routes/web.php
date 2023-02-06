@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\StatusController;
@@ -19,19 +20,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', HomeController::class);
 
-Route::get('/products', [ProductsController::class, 'index']);
-Route::get('/products/create', [ProductsController::class, 'create']);
-Route::post('/products', [ProductsController::class, 'store']);
-Route::get('/products/{product}', [ProductsController::class, 'show']);
-Route::get('/products/{product}/edit', [ProductsController::class, 'edit']);
-Route::put('/products/{product}', [ProductsController::class, 'update']);
-Route::delete('/products/{product}', [ProductsController::class, 'destroy']);
+// Senas Routinimo variantas kai norime atskirai nurodyti kiekvieną route
+//
+//Route::get('/products', [ProductsController::class, 'index']);
+//Route::get('/products/create', [ProductsController::class, 'create']);
+//Route::post('/products', [ProductsController::class, 'store']);
+//Route::get('/products/{product}', [ProductsController::class, 'show']);
+//Route::get('/products/{product}/edit', [ProductsController::class, 'edit']);
+//Route::put('/products/{product}', [ProductsController::class, 'update']);
+//Route::delete('/products/{product}', [ProductsController::class, 'destroy']);
 
+// Naujas Routinimo variantas kai norime naudoti resources standartizuotą routinimą
 Route::resources([
+    'products' => ProductsController::class,
     'categories' => CategoriesController::class,
     'orders' => OrderController::class,
     'statuses' => StatusController::class,
