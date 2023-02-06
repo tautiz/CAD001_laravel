@@ -5,7 +5,7 @@
 @section('content')
     <h1>Editing {{$product->name}}</h1>
     <span>Redagavimo forma</span>
-    <form action="{{route('products.store'}}" method="post">
+    <form action="{{route('products.store')}}" method="post">
         @method('PUT')
         @csrf
         <input type="text" name="name" placeholder="Name" value="{{$product->name}}"><br>
