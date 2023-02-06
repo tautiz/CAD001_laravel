@@ -16,7 +16,7 @@ class ProductsController extends Controller
 
     public function create()
     {
-        return view('products.create');
+        return view('products.create_edit');
     }
 
     public function store(Request $request)
@@ -33,7 +33,7 @@ class ProductsController extends Controller
 
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        return view('products.create_edit', compact('product'));
     }
 
     public function update(Request $request, Product $product)
