@@ -24,7 +24,8 @@ class PersonController extends Controller
 
     public function store(Request $request)
     {
-        return $this->manager->createPerson($request);
+        $person = $this->manager->createPerson($request);
+        return redirect()->route('persons.show', $person);
     }
 
     public function show(Person $person)
