@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Managers\PersonManager;
 use App\Models\Person;
 use Illuminate\Http\Request;
 
 class PersonController extends Controller
 {
+    public function __construct(protected PersonManager $manager)
+    {
+    }
+
     public function index()
     {
         return view('person.index');
@@ -19,13 +24,12 @@ class PersonController extends Controller
 
     public function store(Request $request)
     {
-        $person = Person::create($request->all());
-        return redirect()->route('person.show', $person);
+        return $this->manager->createPerson($request);
     }
 
     public function show(Person $person)
     {
-        return $person;
+        return view('person.show', ['person' => $person]);
     }
 
     public function edit(Person $person)
@@ -36,12 +40,12 @@ class PersonController extends Controller
     public function update(Request $request, Person $person)
     {
         $person->update($request->all());
-        return redirect()->route('person.show', $person);
+        return redirect()->route('persons.show', $person);
     }
 
     public function destroy(Person $person)
     {
         $person->delete();
-        return redirect()->route('person.index');
+        return redirect()->route('persons.index');
     }
 }

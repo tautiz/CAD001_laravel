@@ -12,7 +12,6 @@
                 </sl-avatar>
             </a>
 
-
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/">Pradžia</a></li>
                 <li><a href="/persons">Persons</a></li>

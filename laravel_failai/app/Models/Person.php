@@ -26,7 +26,6 @@ class Person extends Model
     use HasFactory;
 
     protected $guarded = [
-        'user_id',
         'address_id',
     ];
 
@@ -36,6 +35,7 @@ class Person extends Model
         'personal_code',
         'email',
         'phone',
+        'user_id',
     ];
 
     public function user(): BelongsTo
@@ -46,11 +46,6 @@ class Person extends Model
     public function address(): BelongsTo
     {
         return $this->belongsTo(Address::class);
-    }
-
-    public function addresses(): HasMany
-    {
-        return $this->hasMany(Address::class);
     }
 
     public function orders(): HasMany

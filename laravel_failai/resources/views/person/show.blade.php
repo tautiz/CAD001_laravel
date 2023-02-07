@@ -3,5 +3,5 @@
 @section('title', 'Pavadinimas')
 
 @section('content')
-    Netrukus...
+    @include('person.form_fields', $person)
 @endsection
