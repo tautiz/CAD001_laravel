@@ -25,7 +25,16 @@
         @if($product)
             @method('PUT')
         @endif
-        <input type="text" name="name" placeholder="Name" value="{{$product?->name}}"><br>
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value="{{old('name') ?? $product?->name}}"
+            class="@error('name') is-invalid @enderror"
+            ><br>
+
+
         <input type="text" name="slug" placeholder="Slug" value="{{$product?->slug}}"><br>
         <input type="text" name="description" placeholder="Description" value="{{$product?->description}}"><br>
         <input type="text" name="image" placeholder="Image" value="{{$product?->image}}"><br>

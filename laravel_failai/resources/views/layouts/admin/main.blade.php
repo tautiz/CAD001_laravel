@@ -14,13 +14,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0/dist/themes/light.css"/>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0/dist/shoelace.js"></script>
+    <link rel="stylesheet" href="/css/app.css" />
 </head>
 <body>
 <img src="/img/background.png" class="full_fit">
 <div class="main_grid">
     @include('layouts.admin.header')
     <div class="container">
-        <div class="hidden message">{{$message??''}}</div>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         @yield('content', 'Default content')
     </div>
     <br>

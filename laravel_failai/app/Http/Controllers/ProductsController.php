@@ -21,13 +21,26 @@ class ProductsController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => ['required','max:255'],
+            'price' => ['required','integer'],
+            'category_id' => ['required','integer'],
+            'status_id' => ['required','integer'],
+            'slug' => ['required','max:255'],
+
+            'description' => ['nullable', 'string'],
+            'image' => ['nullable'],
+            'color' => ['nullable'],
+            'size' => ['nullable'],
+        ]);
+
         $product = Product::create($request->all());
         return redirect()->route('products.show', $product);
     }
 
     public function show(Product $product)
     {
-        return view('products.show', ['product' => $product]);;
+        return view('products.show', ['product' => $product]);
 
     }
 
@@ -38,6 +51,19 @@ class ProductsController extends Controller
 
     public function update(Request $request, Product $product)
     {
+        $request->validate([
+            'name' => ['required','max:255'],
+            'price' => ['required','integer'],
+            'category_id' => ['required','integer'],
+            'status_id' => ['required','integer'],
+            'slug' => ['required','max:255'],
+
+            'description' => ['nullable', 'string'],
+            'image' => ['nullable'],
+            'color' => ['nullable'],
+            'size' => ['nullable'],
+        ]);
+
         $product->update($request->all());
         return redirect()->route('products.show', $product);
     }
