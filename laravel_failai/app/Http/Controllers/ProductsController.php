@@ -52,11 +52,11 @@ class ProductsController extends Controller
     public function update(Request $request, Product $product)
     {
         $request->validate([
-            'name' => ['required','max:255'],
+            'name' => ['required','size:255'],
             'price' => ['required','integer'],
             'category_id' => ['required','integer'],
             'status_id' => ['required','integer'],
-            'slug' => ['required','max:255'],
+            'slug' => ['required','size:255'],
 
             'description' => ['nullable', 'string'],
             'image' => ['nullable'],
