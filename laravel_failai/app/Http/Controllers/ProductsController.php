@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -19,21 +20,8 @@ class ProductsController extends Controller
         return view('products.create_edit');
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $request->validate([
-            'name' => ['required','max:255'],
-            'price' => ['required','integer'],
-            'category_id' => ['required','integer'],
-            'status_id' => ['required','integer'],
-            'slug' => ['required','max:255'],
-
-            'description' => ['nullable', 'string'],
-            'image' => ['nullable'],
-            'color' => ['nullable'],
-            'size' => ['nullable'],
-        ]);
-
         $product = Product::create($request->all());
         return redirect()->route('products.show', $product);
     }
@@ -49,21 +37,8 @@ class ProductsController extends Controller
         return view('products.create_edit', compact('product'));
     }
 
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        $request->validate([
-            'name' => ['required','size:255'],
-            'price' => ['required','integer'],
-            'category_id' => ['required','integer'],
-            'status_id' => ['required','integer'],
-            'slug' => ['required','size:255'],
-
-            'description' => ['nullable', 'string'],
-            'image' => ['nullable'],
-            'color' => ['nullable'],
-            'size' => ['nullable'],
-        ]);
-
         $product->update($request->all());
         return redirect()->route('products.show', $product);
     }

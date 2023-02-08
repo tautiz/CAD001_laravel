@@ -19,6 +19,11 @@ class StatusController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'min:3', 'max:255'],
+            'type' => ['required', 'string', 'in_array:order,payment,category,user,product,order_details'],
+        ]);
+
         $status = Status::create($request->all());
         return redirect()->route('status.show', $status);
     }

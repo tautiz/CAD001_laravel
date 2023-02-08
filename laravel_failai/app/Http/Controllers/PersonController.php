@@ -24,6 +24,14 @@ class PersonController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'min:3', 'max:255'],
+            'surname' => ['required', 'string', 'min:3', 'max:255'],
+            'personal_code' => ['nullable', 'string', 'min:3', 'max:255'],
+            'email' => ['required', 'email'],
+            'phone' => ['nullable', 'string', 'min:4', 'max:255'],
+        ]);
+
         $person = $this->manager->createPerson($request);
         return redirect()->route('persons.show', $person);
     }
@@ -40,6 +48,14 @@ class PersonController extends Controller
 
     public function update(Request $request, Person $person)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'min:3', 'max:255'],
+            'surname' => ['required', 'string', 'min:3', 'max:255'],
+            'personal_code' => ['nullable', 'string', 'min:3', 'max:255'],
+            'email' => ['required', 'email'],
+            'phone' => ['nullable', 'string', 'min:4', 'max:255'],
+            'user_id' => ['required', 'integer', 'exists:users,id'],
+        ]);
         $person->update($request->all());
         return redirect()->route('persons.show', $person);
     }

@@ -19,6 +19,10 @@ class PaymentTypeController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'min:3', 'max:255'],
+        ]);
+
         $payment_type = PaymentType::create($request->all());
         return redirect()->route('payment_type.show', $payment_type);
     }

@@ -19,6 +19,20 @@ class AddressController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'min:3', 'max:255'],
+            'type' => ['required', 'string', 'in_array:home,work,other'],
+            'country' => ['required', 'string'],
+            'state' => ['nullable', 'string'],
+            'city' => ['required', 'string'],
+            'zip' => ['required', 'string'],
+            'street' => ['required', 'string'],
+            'house_number' => ['required', 'string'],
+            'apartment_number' => ['nullable', 'string'],
+            'additional_info' => ['nullable', 'string', 'min:3'],
+            'user_id' => ['required', 'exists:users,id'],
+        ]);
+
         $address = Address::create($request->all());
         return redirect()->route('address.show', $address);
     }

@@ -19,6 +19,13 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'user_id' => ['required', 'exists:users,id'],
+            'shipping_address_id' => ['required', 'exists:addresses,id'],
+            'billing_address_id' => ['required', 'exists:addresses,id'],
+            'status_id' => ['required', 'exists:statuses,id'],
+        ]);
+
         $order = Order::create($request->all());
         return redirect()->route('order.show', $order);
     }

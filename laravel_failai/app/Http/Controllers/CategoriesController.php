@@ -19,6 +19,16 @@ class CategoriesController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'min:3', 'max:255'],
+            'slug' => ['required', 'string', 'min:3', 'max:255'],
+            'description' => ['nullable', 'string', 'min:3', 'max:255'],
+            'image' => ['nullable'],
+            'status_id' => ['required', 'integer', 'exists:statuses,id'],
+            'parent_id' => ['nullable', 'integer', 'exists:categories,id'],
+            'sort_order' => ['nullable', 'integer', 'min:0'],
+        ]);
+
         $categories = Category::create($request->all());
         return redirect()->route('categories.show', $categories);
     }
