@@ -26,12 +26,9 @@ class ProductRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'min:4', 'max:255'],
             'price' => ['required','integer', 'min:0'],
-
             'category_id' => ['required','integer', 'exists:categories,id'],
             'status_id' => ['required','integer', 'exists:statuses,id'],
-
             'slug' => ['required', 'string', 'min:3', 'max:255'],
-
             'description' => ['nullable', 'string', 'min:3'],
             'image' => ['nullable'],
             'color' => ['nullable', 'in_array:Red,Green,Blue,Black,White'],

@@ -9,7 +9,8 @@ class AddressController extends Controller
 {
     public function index()
     {
-        return view('address.index');
+        $addresses = Address::all();
+        return view('address.index', ['addresses' => $addresses]);
     }
 
     public function create()
@@ -21,7 +22,7 @@ class AddressController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'min:3', 'max:255'],
-            'type' => ['required', 'string', 'in_array:home,work,other'],
+            'type' => ['required', 'string',],
             'country' => ['required', 'string'],
             'state' => ['nullable', 'string'],
             'city' => ['required', 'string'],
@@ -34,7 +35,7 @@ class AddressController extends Controller
         ]);
 
         $address = Address::create($request->all());
-        return redirect()->route('address.show', $address);
+        return redirect()->route('addresses.show', $address);
     }
 
     public function show(Address $address)
@@ -50,12 +51,12 @@ class AddressController extends Controller
     public function update(Request $request, Address $address)
     {
         $address->update($request->all());
-        return redirect()->route('address.show', $address);
+        return redirect()->route('addresses.show', $address);
     }
 
     public function destroy(Address $address)
     {
         $address->delete();
-        return redirect()->route('address.index');
+        return redirect()->route('addresses.index');
     }
 }

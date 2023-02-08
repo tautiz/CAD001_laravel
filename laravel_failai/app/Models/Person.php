@@ -52,4 +52,9 @@ class Person extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public function __toString(): string
+    {
+        return $this->name . ' ' . $this->surname;
+    }
 }

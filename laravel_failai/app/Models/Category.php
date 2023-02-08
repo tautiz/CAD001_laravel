@@ -44,4 +44,9 @@ class Category extends Model
     {
         return $this->belongsTo(Status::class);
     }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 }

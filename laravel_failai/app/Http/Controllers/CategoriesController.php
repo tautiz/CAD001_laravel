@@ -9,7 +9,8 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        return view('categories.index');
+        $categories = Category::all();
+        return view('categories.index', ['categories' => $categories]);
     }
 
     public function create()
@@ -33,9 +34,9 @@ class CategoriesController extends Controller
         return redirect()->route('categories.show', $categories);
     }
 
-    public function show(Category $categories)
+    public function show(Category $category)
     {
-        return $categories;
+        return view('categories.show', compact('category'));
     }
 
     public function edit(Category $categories)
@@ -49,9 +50,9 @@ class CategoriesController extends Controller
         return redirect()->route('categories.show', $categories);
     }
 
-    public function destroy(Category $categories)
+    public function destroy(Category $category)
     {
-        $categories->delete();
+        $category->delete();
         return redirect()->route('categories.index');
     }
 }

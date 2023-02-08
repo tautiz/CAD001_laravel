@@ -14,7 +14,8 @@ class PersonController extends Controller
 
     public function index()
     {
-        return view('person.index');
+        $persons = Person::all();
+        return view('person.index', ['persons' => $persons]);
     }
 
     public function create()

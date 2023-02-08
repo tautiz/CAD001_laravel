@@ -1,7 +1,7 @@
 @extends('layouts.admin.main')
 
-@section('title', 'Pavadinimas')
+@section('title', 'Vartotojo informacija')
 
 @section('content')
-    Netrukus...
+    @include('users.form_fields', $user)
 @endsection

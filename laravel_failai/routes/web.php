@@ -4,6 +4,7 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentTypeController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\StatusController;
@@ -42,5 +43,6 @@ Route::resources([
     'addresses' => AddressController::class,
     'users' => UserController::class,
     'persons' => PersonController::class,
+    'paymentTypes' => PaymentTypeController::class,
 ]);
 

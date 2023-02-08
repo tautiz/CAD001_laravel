@@ -22,4 +22,9 @@ class Status extends Model
         'name',
         'type',
     ];
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 }
