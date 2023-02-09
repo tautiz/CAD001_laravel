@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 class PersonManager
 {
-    public function createPerson(Request $request): Person
+    public function createCustomer(Request $request): Person
     {
         DB::beginTransaction();
 
@@ -28,5 +28,12 @@ class PersonManager
         DB::commit();
 
         return $person;
+    }
+
+    public function createPersonToUser(Request $request, User $user): Person
+    {
+        $personArray = $request->all() + ['user_id' => $user->id];
+
+        return Person::create($personArray);
     }
 }
