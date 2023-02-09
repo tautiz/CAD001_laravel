@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PersonEditRequest;
+use App\Http\Requests\PersonStoreRequest;
 use App\Managers\PersonManager;
 use App\Models\Person;
 use Illuminate\Http\Request;
@@ -23,17 +25,9 @@ class PersonController extends Controller
         return view('person.create');
     }
 
-    public function store(Request $request)
+    public function store(PersonStoreRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-            'surname' => ['required', 'string', 'min:3', 'max:255'],
-            'personal_code' => ['nullable', 'string', 'min:3', 'max:255'],
-            'email' => ['required', 'email'],
-            'phone' => ['nullable', 'string', 'min:4', 'max:255'],
-        ]);
-
-        $person = $this->manager->createPerson($request);
+        $person = $this->manager->createCustomer($request);
         return redirect()->route('persons.show', $person);
     }
 
@@ -47,16 +41,8 @@ class PersonController extends Controller
         return view('person.edit', compact('person'));
     }
 
-    public function update(Request $request, Person $person)
+    public function update(PersonEditRequest $request, Person $person)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-            'surname' => ['required', 'string', 'min:3', 'max:255'],
-            'personal_code' => ['nullable', 'string', 'min:3', 'max:255'],
-            'email' => ['required', 'email'],
-            'phone' => ['nullable', 'string', 'min:4', 'max:255'],
-            'user_id' => ['required', 'integer', 'exists:users,id'],
-        ]);
         $person->update($request->all());
         return redirect()->route('persons.show', $person);
     }
