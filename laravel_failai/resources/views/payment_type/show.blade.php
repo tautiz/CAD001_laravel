@@ -1,7 +1,8 @@
 @extends('layouts.admin.main')
 
-@section('title', 'Pavadinimas')
+@section('title', __('paymentTypes.paymentsType'))
 
 @section('content')
-    Netrukus...
+    <h1>{{__('paymentTypes.paymentsTypes')}}</h1>
+    <x-forms.input field="name" :model="$paymentType"/>
 @endsection

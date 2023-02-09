@@ -3,6 +3,5 @@
 @section('title', 'Pavadinimas')
 
 @section('content')
-    @include('person.form_fields', $person)
-    <input type="text" value="{{$person->user}}"><br>
+    <x-forms.inputs :model="$person ?? (new \App\Models\Person())" fields="name,surname,personal_code,email,phone,user"/>
 @endsection

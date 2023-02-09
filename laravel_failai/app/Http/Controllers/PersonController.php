@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PersonEditRequest;
 use App\Http\Requests\PersonStoreRequest;
+use App\Http\Requests\PersonUpdateRequest;
 use App\Managers\PersonManager;
 use App\Models\Person;
-use Illuminate\Http\Request;
 
 class PersonController extends Controller
 {
@@ -41,7 +40,7 @@ class PersonController extends Controller
         return view('person.edit', compact('person'));
     }
 
-    public function update(PersonEditRequest $request, Person $person)
+    public function update(PersonUpdateRequest $request, Person $person)
     {
         $person->update($request->all());
         return redirect()->route('persons.show', $person);

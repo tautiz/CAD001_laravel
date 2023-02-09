@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ProductRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class ProductRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,18 +23,18 @@ class ProductRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'min:4', 'max:255'],
-            'price' => ['required','integer', 'min:0'],
-            'category_id' => ['required','integer', 'exists:categories,id'],
-            'status_id' => ['required','integer', 'exists:statuses,id'],
-            'slug' => ['required', 'string', 'min:3', 'max:255'],
+            'name'        => ['required', 'string', 'min:4', 'max:255'],
+            'price'       => ['required', 'integer', 'min:0'],
+            'category_id' => ['required', 'integer', 'exists:categories,id'],
+            'status_id'   => ['required', 'integer', 'exists:statuses,id'],
+            'slug'        => ['required', 'alpha_dash', 'min:3', 'max:255', 'unique:products,slug'],
             'description' => ['nullable', 'string', 'min:3'],
-            'image' => ['nullable'],
-            'color' => ['nullable', 'in_array:Red,Green,Blue,Black,White'],
-            'size' => ['nullable', 'in_array:XS,S,M,L,XL'],
+            'image'       => ['nullable'],
+            'color'       => ['nullable', Rule::in(Product::COLORS)],
+            'size'        => ['nullable', Rule::in(Product::SIZES)],
         ];
     }
 
@@ -41,13 +43,13 @@ class ProductRequest extends FormRequest
      *
      * @return array
      */
-    public function messages()
+    public function messages(): array
     {
         return [
             'name.required' => 'Privalomas produkto pavadinimas',
-            'name.string' => 'Pavadinima turi sudaryti lotyniški simboliai',
-            'name.min' => 'Minimalus pavadinimo ilgis privalo būti :min simboliai',
-            'name.max' => 'Maximalus pavadinimo ilgis privalo būti :max simboliai',
+            'name.string'   => 'Pavadinima turi sudaryti lotyniški simboliai',
+            'name.min'      => 'Minimalus pavadinimo ilgis privalo būti :min simboliai',
+            'name.max'      => 'Maximalus pavadinimo ilgis privalo būti :max simboliai',
             // ....
         ];
     }

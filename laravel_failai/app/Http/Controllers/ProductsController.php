@@ -4,20 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
     public function index()
     {
-        $products =  Product::query()->with(['category', 'status'])->get();
+        $products = Product::query()->with(['category', 'status'])->get();
 
         return view('products.index', compact('products'));
-    }
-
-    public function create()
-    {
-        return view('products.create_edit');
     }
 
     public function store(ProductRequest $request)
@@ -26,10 +20,14 @@ class ProductsController extends Controller
         return redirect()->route('products.show', $product);
     }
 
+    public function create()
+    {
+        return view('products.create_edit');
+    }
+
     public function show(Product $product)
     {
         return view('products.show', ['product' => $product]);
-
     }
 
     public function edit(Product $product)

@@ -32,6 +32,9 @@ class Product extends Model
     use HasFactory;
     use SoftDeletes;
 
+    public const COLORS = ['Red', 'Green', 'Blue', 'Black', 'White'];
+    public const SIZES  = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+
     protected $fillable = [
         'name',
         'slug',

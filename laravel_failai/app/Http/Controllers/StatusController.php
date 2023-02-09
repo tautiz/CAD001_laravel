@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StatusRequest;
 use App\Models\Status;
-use Illuminate\Http\Request;
 
 class StatusController extends Controller
 {
     public function index()
     {
-        return view('status.index');
+        $statuses = Status::all();
+        return view('status.index', compact('statuses'));
+    }
+
+    public function store(StatusRequest $request)
+    {
+        $status = Status::create($request->all());
+        return redirect()->route('statuses.show', $status);
     }
 
     public function create()
@@ -17,20 +24,9 @@ class StatusController extends Controller
         return view('status.create');
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-            'type' => ['required', 'string', 'in_array:order,payment,category,user,product,order_details'],
-        ]);
-
-        $status = Status::create($request->all());
-        return redirect()->route('status.show', $status);
-    }
-
     public function show(Status $status)
     {
-        return $status;
+        return view('status.show', compact('status'));
     }
 
     public function edit(Status $status)
@@ -38,15 +34,15 @@ class StatusController extends Controller
         return view('status.edit', compact('status'));
     }
 
-    public function update(Request $request, Status $status)
+    public function update(StatusRequest $request, Status $status)
     {
         $status->update($request->all());
-        return redirect()->route('status.show', $status);
+        return redirect()->route('statuses.show', $status);
     }
 
     public function destroy(Status $status)
     {
         $status->delete();
-        return redirect()->route('status.index');
+        return redirect()->route('statuses.index');
     }
 }

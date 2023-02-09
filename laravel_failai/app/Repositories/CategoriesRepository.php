@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 use App\Models\Category;
+use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
 /**
  * Class CategoriesRepository.

@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PaymentsTypeRequest;
 use App\Models\PaymentType;
-use Illuminate\Http\Request;
 
 class PaymentTypeController extends Controller
 {
     public function index()
     {
-        return view('payment_type.index');
+        $paymentTypes = PaymentType::all();
+        return view('payment_type.index', compact('paymentTypes'));
+    }
+
+    public function store(PaymentsTypeRequest $request)
+    {
+        $paymentType = PaymentType::create($request->all());
+        return redirect()->route('paymentTypes.show', $paymentType);
     }
 
     public function create()
@@ -17,35 +24,25 @@ class PaymentTypeController extends Controller
         return view('payment_type.create');
     }
 
-    public function store(Request $request)
+    public function show(PaymentType $paymentType)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-        ]);
-
-        $payment_type = PaymentType::create($request->all());
-        return redirect()->route('payment_type.show', $payment_type);
+        return view('payment_type.show', compact('paymentType'));
     }
 
-    public function show(PaymentType $payment_type)
+    public function edit(PaymentType $paymentType)
     {
-        return $payment_type;
+        return view('payment_type.edit', compact('paymentType'));
     }
 
-    public function edit(PaymentType $payment_type)
+    public function update(PaymentsTypeRequest $request, PaymentType $paymentType)
     {
-        return view('payment_type.edit', compact('payment_type'));
+        $paymentType->update($request->all());
+        return redirect()->route('paymentTypes.show', $paymentType);
     }
 
-    public function update(Request $request, PaymentType $payment_type)
+    public function destroy(PaymentType $paymentType)
     {
-        $payment_type->update($request->all());
-        return redirect()->route('payment_type.show', $payment_type);
-    }
-
-    public function destroy(PaymentType $payment_type)
-    {
-        $payment_type->delete();
-        return redirect()->route('payment_type.index');
+        $paymentType->delete();
+        return redirect()->route('paymentTypes.index');
     }
 }

@@ -48,14 +48,17 @@ class Address extends Model
 
     public function __toString(): string
     {
-        return implode(' ', array_filter([
-            $this->street,
-            $this->house_number,
-            $this->apartment_number,
-            $this->zip,
-            $this->city,
-            $this->state,
-            $this->country,
-        ]));
+        return implode(
+            ' ',
+            array_filter([
+                $this->street,
+                $this->house_number,
+                $this->apartment_number,
+                $this->zip,
+                $this->city,
+                $this->state,
+                $this->country,
+            ]),
+        );
     }
 }

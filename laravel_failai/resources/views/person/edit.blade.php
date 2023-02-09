@@ -7,9 +7,7 @@
     <span>Editing {{$person->name}}</span>
     <form action="{{route('persons.update', $person)}}" method="post">
         @method('PUT')
-        @include('person.form_fields', $person)
-        <input type="text" name="user_id" value="{{$person->user_id}}"><br>
-
+        <x-forms.inputs :model="$person ?? (new \App\Models\Person())" fields="name,surname,personal_code,email,phone,user_id"/>
         @csrf
         <hr>
         <input type="submit" class="waves-effect waves-light btn" value="Update">

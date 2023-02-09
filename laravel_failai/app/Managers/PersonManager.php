@@ -16,8 +16,8 @@ class PersonManager
         DB::beginTransaction();
 
         $user = User::create([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
+            'name'     => $request->get('name'),
+            'email'    => $request->get('email'),
             'password' => Hash::make(Str::random(8)),   // random password
         ]);
 

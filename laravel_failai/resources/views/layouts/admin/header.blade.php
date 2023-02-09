@@ -2,11 +2,11 @@
     <nav>
         <div class="nav-wrapper">
             <a href="/" class="brand-logo">
-                <img src="/img/logo.png" alt="logo" class="logo">
+                <img src="{{asset('/img/logo.png')}}" alt="logo" class="logo">
             </a>
             <a href="/login">
                 <sl-avatar
-                    initials="{{$user?->getInitials()}}"
+                    initials="{{isset($user) ? $user->getInitials() : ''}}"
                     class="right hide-on-med-and-down"
                     label="User avatar">
                 </sl-avatar>

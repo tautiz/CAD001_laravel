@@ -74,7 +74,7 @@ class Order extends Model
             'order_id',
             'id',
             'id',
-            'product_id'
+            'product_id',
         );
 
 //      Alternatyva:
