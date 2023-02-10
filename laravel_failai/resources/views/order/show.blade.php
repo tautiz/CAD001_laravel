@@ -4,5 +4,6 @@
 
 @section('content')
     <h1>{{__('orders.order')}}</h1>
-    <x-forms.inputs :model="$order ?? (new \App\Models\Order())" fields="user,shippingAddress,billingAddress,status"/>
+    <x-forms.inputs :model="$order" fields="user,shippingAddress,billingAddress,status"/>
+    <x-forms.buttons.action :model="$order"/>
 @endsection

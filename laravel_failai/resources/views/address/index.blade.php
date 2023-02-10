@@ -42,15 +42,7 @@
                 <td>{{$address->user_id}}</td>
                 <td>{{$address->created_at}}</td>
                 <td>{{$address->updated_at}}</td>
-                <td>
-                    <a href="{{route('addresses.edit', $address)}}"
-                       class="waves-effect waves-light btn">{{__('messages.edit')}}</a>
-                    <form action="{{route('addresses.destroy', $address)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <input type="submit" class="waves-effect waves-light btn" value="{{__('messages.delete')}}">
-                    </form>
-                </td>
+                <td><x-forms.buttons.action :model="$address" display-show-link="true"/></td>
             </tr>
         @endforeach
         </tbody>

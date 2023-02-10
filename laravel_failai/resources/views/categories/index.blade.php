@@ -32,9 +32,7 @@
                 <td>{{$category->status_id}}</td>
                 <td>{{$category->created_at}}</td>
                 <td>{{$category->updated_at}}</td>
-                <td>
-                    @include('layouts.admin.list_actions_buttons', ['modelObject' => $category, 'mainRoute' => 'categories'])
-                </td>
+                <td><x-forms.buttons.action :model="$category" :display-show-link="true"/></td>
             </tr>
         @endforeach
         </tbody>

@@ -19,19 +19,7 @@
                     <p>Last updated: {{ $product->updated_at }}</p>
                 </div>
                 <div class="card-action">
-                    <a href="{{ route('products.edit', $product->id) }}"
-                       data-tooltip="Redaguoti"
-                       class="tooltipped waves-effect waves-light green btn-small">
-                        <i class="tiny material-icons">edit</i>
-                    </a>
-                    <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" data-tooltip="Šalinti"
-                                class="tooltipped waves-effect waves-light red btn-small">
-                            <i class="tiny material-icons">delete</i>
-                        </button>
-                    </form>
+                    <x-forms.buttons.action :model="$product" mainRoute="products" />
                 </div>
             </div>
         </div>

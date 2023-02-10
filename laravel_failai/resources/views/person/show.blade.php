@@ -1,7 +1,8 @@
 @extends('layouts.admin.main')
 
-@section('title', 'Pavadinimas')
+@section('title', 'Person details')
 
 @section('content')
-    <x-forms.inputs :model="$person ?? (new \App\Models\Person())" fields="name,surname,personal_code,email,phone,user"/>
+    <x-forms.inputs :model="$person" fields="name,surname,personal_code,email,phone,user"/>
+    <x-forms.buttons.action :model="$person"/>
 @endsection

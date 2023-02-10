@@ -4,4 +4,5 @@
 
 @section('content')
     @include('users.form_fields', $user)
+    <x-forms.buttons.action :model="$user"/>
 @endsection
