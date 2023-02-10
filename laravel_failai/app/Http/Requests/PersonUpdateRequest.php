@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\FirstUppercaseRule;
+use App\Rules\PersonalCodeRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PersonUpdateRequest extends FormRequest
@@ -24,9 +26,9 @@ class PersonUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'          => ['required', 'string', 'min:3', 'max:255'],
-            'surname'       => ['required', 'string', 'min:3', 'max:255'],
-            'personal_code' => ['sometimes', 'nullable', 'string', 'min:3', 'max:255'],
+            'name'          => ['required', 'string', 'min:3', 'max:255', new FirstUppercaseRule()],
+            'surname'       => ['required', 'string', 'min:3', 'max:255', new FirstUppercaseRule()],
+            'personal_code' => ['sometimes', new PersonalCodeRule()],
             'email'         => ['required', 'email'],
             'phone'         => ['sometimes', 'nullable', 'string', 'min:4', 'max:255'],
             'user_id'       => ['sometimes', 'integer', 'exists:users,id'],
