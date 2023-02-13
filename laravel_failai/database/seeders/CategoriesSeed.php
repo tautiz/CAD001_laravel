@@ -94,7 +94,7 @@ class CategoriesSeed extends Seeder
                 [
                     'description' => $cat['description'],
                     'image' => $cat['image'],
-                    'status_id' => Status::where(['name' => 'Aktyvus', 'type'=>'product'])->first()->id,
+                    'status_id' => Status::where(['name' => 'active', 'type'=>'product'])->first()->id,
                     'parent_id' => null,
                 ]
             );

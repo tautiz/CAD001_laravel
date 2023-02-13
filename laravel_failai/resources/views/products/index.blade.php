@@ -13,7 +13,8 @@
                     <th>{{__('products.id')}}</th>
                     <th>{{__('products.name')}}</th>
                     <th>{{__('products.price')}}</th>
-                    <th>{{__('messages.actions')}}</th>
+                    <th>{{__('products.status')}}</th>
+                    <th>{{__('general.actions')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -22,6 +23,8 @@
                         <td>{{$product->id}}</td>
                         <td>{{$product->name}}</td>
                         <td>{{$product->price}}</td>
+                        @php($status = $product->status)
+                        <td>{{__('statuses.types.' . ($status?->type??'null') . '.' . ($status?->name??'null'))}}</td>
                         <td>
                             <x-forms.buttons.action :model="$product" displayShowLink="true"/>
                             <sl-tooltip content="{{__('messages.show')}}">

@@ -4,26 +4,34 @@
             <a href="/" class="brand-logo">
                 <img src="{{asset('/img/logo.png')}}" alt="logo" class="logo">
             </a>
-            <a href="/login">
-                <sl-avatar
-                    initials="{{isset($user) ? $user->getInitials() : ''}}"
-                    class="right hide-on-med-and-down"
-                    label="User avatar">
-                </sl-avatar>
-            </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li>[{{app()->getLocale()}}]</li>
-                <li></li>
-                <li><a href="/">Pradžia</a></li>
-                <li><a href="{{route('orders.index')}}">Užsakymai</a></li>
-                <li><a href="{{route('products.index')}}">Prekės</a></li>
-                <li><a href="{{route('categories.index')}}">Kategorijos</a></li>
-                <li><a href="{{route('paymentTypes.index')}}">Mokėjimų tipai</a></li>
-                <li><a href="{{route('statuses.index')}}">Statusai</a></li>
-                <li><a href="{{route('users.index')}}">Vartotojai</a></li>
-                <li><a href="{{route('persons.index')}}">Asmenys</a></li>
-                <li><a href="{{route('addresses.index')}}">Adresai</a></li>
-                <li></li>
+                <li><a href="/">{{__('general.meniu.home')}}</a></li>
+                <li><a href="{{route('orders.index')}}">{{__('general.meniu.orders')}}</a></li>
+                <li><a href="{{route('products.index')}}">{{__('general.meniu.products')}}</a></li>
+                <li><a href="{{route('categories.index')}}">{{__('general.meniu.categories')}}</a></li>
+                <li><a href="{{route('paymentTypes.index')}}">{{__('general.meniu.paymentTypes')}}</a></li>
+                <li><a href="{{route('statuses.index')}}">{{__('general.meniu.statuses')}}</a></li>
+                <li><a href="{{route('users.index')}}">{{__('general.meniu.users')}}</a></li>
+                <li><a href="{{route('persons.index')}}">{{__('general.meniu.persons')}}</a></li>
+                <li><a href="{{route('addresses.index')}}">{{__('general.meniu.addresses')}}</a></li>
+                <li>
+                    <div>
+                        @if(app()->getLocale() == 'en')
+                            <a href="{{url()->current()}}?lang=lt">LT</a>
+                        @else
+                            <a href="{{url()->current()}}?lang=en">EN</a>
+                        @endif
+                    </div>
+                </li>
+                <li>
+                    <a href="/login">
+                        <sl-avatar
+                            initials="{{isset($user) ? $user->getInitials() : ''}}"
+                            class="right hide-on-med-and-down"
+                            label="User avatar">
+                        </sl-avatar>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>

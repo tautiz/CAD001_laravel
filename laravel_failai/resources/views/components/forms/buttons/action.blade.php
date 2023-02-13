@@ -1,6 +1,6 @@
 <sl-button-group label="Actions">
     @if($displayShowLink)
-        <sl-tooltip content="{{__('messages.show')}}">
+        <sl-tooltip content="{{__('general.show')}}">
             <sl-button
                 size="small"
                 pill
@@ -8,11 +8,11 @@
                 outline
                 href="{{ route($mainRoute . '.show', $model->id) }}"
             >
-                <sl-icon name="eye" label="{{__('messages.show')}}"></sl-icon>
+                <sl-icon name="eye" label="{{__('general.show')}}"></sl-icon>
             </sl-button>
         </sl-tooltip>
     @endif
-    <sl-tooltip content="{{__('messages.edit')}}">
+    <sl-tooltip content="{{__('general.edit')}}">
         <sl-button
             size="small"
             pill
@@ -20,10 +20,10 @@
             outline
             href="{{ route($mainRoute . '.edit', $model->id) }}"
         >
-            <sl-icon name="pencil-square" label="{{__('messages.edit')}}"></sl-icon>
+            <sl-icon name="pencil-square" label="{{__('general.edit')}}"></sl-icon>
         </sl-button>
     </sl-tooltip>
-    <sl-tooltip content="{{__('messages.delete')}}">
+    <sl-tooltip content="{{__('general.delete')}}">
         <form action="" method="POST">
             @csrf
             @method('DELETE')
@@ -33,7 +33,7 @@
                 variant="danger"
                 outline
             >
-                <sl-icon name="trash" label="{{__('messages.delete')}}"></sl-icon>
+                <sl-icon name="trash" label="{{__('general.delete')}}"></sl-icon>
             </sl-button>
         </form>
     </sl-tooltip>

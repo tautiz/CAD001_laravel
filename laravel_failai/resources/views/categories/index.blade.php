@@ -15,9 +15,9 @@
             <th>{{__('categories.parent')}}</th>
             <th>{{__('categories.description')}}</th>
             <th>{{__('categories.status')}}</th>
-            <th>{{__('messages.created_at')}}</th>
-            <th>{{__('messages.updated_at')}}</th>
-            <th>{{__('messages.actions')}}</th>
+            <th>{{__('general.created_at')}}</th>
+            <th>{{__('general.updated_at')}}</th>
+            <th>{{__('general.actions')}}</th>
         </tr>
         </thead>
         <tbody>

@@ -16,9 +16,9 @@
             <th>{{__('persons.phone')}}</th>
             <th>{{__('persons.user')}}</th>
 
-            <th>{{__('messages.created_at')}}</th>
-            <th>{{__('messages.updated_at')}}</th>
-            <th>{{__('messages.actions')}}</th>
+            <th>{{__('general.created_at')}}</th>
+            <th>{{__('general.updated_at')}}</th>
+            <th>{{__('general.actions')}}</th>
         </tr>
         </thead>
         <tbody>

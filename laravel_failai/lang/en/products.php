@@ -20,4 +20,6 @@ return [
     'price'       => 'Price',
     'status_id'   => 'Status ID',
     'status'      => 'Status',
+
+    'no_products' => 'Produktų nėra',
 ];

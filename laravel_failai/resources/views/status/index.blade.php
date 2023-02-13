@@ -12,22 +12,22 @@
             <th>{{__('statuses.name')}}</th>
             <th>{{__('statuses.type')}}</th>
 
-            <th>{{__('messages.created_at')}}</th>
-            <th>{{__('messages.updated_at')}}</th>
-            <th>{{__('messages.actions')}}</th>
+            <th>{{__('general.created_at')}}</th>
+            <th>{{__('general.updated_at')}}</th>
+            <th>{{__('general.actions')}}</th>
         </tr>
         </thead>
         <tbody>
         @foreach($statuses as $status)
             <tr>
                 <td>{{$status?->id}}</td>
-                <td>{{$status?->name}}</td>
+                <td>{{__('statuses.types.' . ($status?->type??'null') . '.' . ($status?->name??'null'))}}</td>
                 <td>{{$status?->type}}</td>
 
                 <td>{{$status?->created_at}}</td>
                 <td>{{$status?->updated_at}}</td>
                 <td>
-                    @include('layouts.admin.list_actions_buttons', ['modelObject' => $status, 'mainRoute' => 'statuses'])
+                    <x-forms.buttons.action :model="$status" displayShowLink="true"/>
                 </td>
             </tr>
         @endforeach

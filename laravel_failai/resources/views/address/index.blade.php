@@ -20,9 +20,9 @@
             <th>{{__('address.type')}}</th>
             <th>{{__('address.additional_info')}}</th>
             <th>{{__('address.user_id')}}</th>
-            <th>{{__('messages.created_at')}}</th>
-            <th>{{__('messages.updated_at')}}</th>
-            <th>{{__('messages.actions')}}</th>
+            <th>{{__('general.created_at')}}</th>
+            <th>{{__('general.updated_at')}}</th>
+            <th>{{__('general.actions')}}</th>
         </tr>
         </thead>
         <tbody>
