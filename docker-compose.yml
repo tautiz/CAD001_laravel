@@ -6,8 +6,6 @@ services:
       - ./laravel_failai:/var/www/html/
     depends_on:
       - db
-    ports:
-      - "80:80"
     environment:
       APACHE_SERVER_NAME: laravel.local
       APPLICATION_ENV: development
@@ -16,6 +14,8 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.web.rule=Host(`shop.lt`)"
       - "traefik.http.routers.web.entrypoints=web"
+    networks:
+      - traefik-gateway
 
   db:
     image: mysql:latest
@@ -30,7 +30,15 @@ services:
       MYSQL_DATABASE: laravel
       MYSQL_USER: devuser
       MYSQL_PASSWORD: devpass
+    networks:
+      - traefik-gateway
+    labels:
+        - "traefik.enable=false"
 
 volumes:
   myapp:
     external: false
+
+networks:
+  traefik-gateway:
+    external: true
