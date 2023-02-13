@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\PersonStoreRequest;
 use App\Http\Requests\PersonUpdateRequest;
 use App\Managers\PersonManager;

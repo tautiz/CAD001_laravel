@@ -1,0 +1,1 @@
+Mano produktas: {{ $product->name }}

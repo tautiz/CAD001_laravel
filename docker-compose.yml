@@ -4,13 +4,18 @@ services:
     image: tautiz/web4study
     volumes:
       - ./laravel_failai:/var/www/html/
-    ports:
-      - 80:80
     depends_on:
       - db
+    ports:
+      - "80:80"
     environment:
       APACHE_SERVER_NAME: laravel.local
       APPLICATION_ENV: development
+      APACHE_LOG_DIR: /var/log/apache2
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.web.rule=Host(`shop.lt`)"
+      - "traefik.http.routers.web.entrypoints=web"
 
   db:
     image: mysql:latest

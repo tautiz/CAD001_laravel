@@ -1,0 +1,1 @@
+Mano kategorija: {{ $category->name }}
