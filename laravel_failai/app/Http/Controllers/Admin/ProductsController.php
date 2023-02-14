@@ -18,6 +18,23 @@ class ProductsController extends Controller
     public function store(ProductRequest $request)
     {
         $product = Product::create($request->all());
+
+        // Tikriname, ar užklausa turi failą ir ar jis yra validus paveikslėlio failas
+        if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
+            // Įkeliame failą į /tmp/ aplanką
+            $image = $request->file('foto');
+
+            // Gaunamas paveikslelio pavadinimą
+            $clientOriginalName = $image->getClientOriginalName();
+
+            // Atlieka /tml/phpHG948fWRFG paveikslelio perkelima į public/img/products katalogą
+            $image->move(public_path('img/products'), $clientOriginalName);
+
+            // Ši kodo dalis atsakinga uz paveiksliuko isaugojima produkto lenteleje
+            $product->image = '/img/products/'. $clientOriginalName;
+            $product->save();
+        }
+
         return redirect()->route('products.show', $product);
     }
 
@@ -39,6 +56,23 @@ class ProductsController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         $product->update($request->all());
+
+        // Tikriname, ar užklausa turi failą ir ar jis yra validus paveikslėlio failas
+        if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
+            // Įkeliame failą į /tmp/ aplanką
+            $image = $request->file('foto');
+
+            // Gaunamas paveikslelio pavadinimą
+            $clientOriginalName = $image->getClientOriginalName();
+
+            // Atlieka /tml/phpHG948fWRFG paveikslelio perkelima į public/img/products katalogą
+            $image->move(public_path('img/products'), $clientOriginalName);
+
+            // Ši kodo dalis atsakinga uz paveiksliuko isaugojima produkto lenteleje
+            $product->image = '/img/products/'. $clientOriginalName;
+            $product->save();
+        }
+
         return redirect()->route('products.show', $product);
     }
 

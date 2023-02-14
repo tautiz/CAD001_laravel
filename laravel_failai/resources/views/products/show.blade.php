@@ -7,7 +7,7 @@
         <div class="col s12 m3">
             <div class="card">
                 <div class="card-image">
-                    <img src="https://picsum.photos/200" alt="">
+                    <img src="{{$product->image}}" alt="">
                     <span class="card-title">{{ $product->name }}</span>
                 </div>
                 <div class="card-content">

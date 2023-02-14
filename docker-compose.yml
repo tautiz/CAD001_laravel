@@ -10,6 +10,7 @@ services:
       APACHE_SERVER_NAME: laravel.local
       APPLICATION_ENV: development
       APACHE_LOG_DIR: /var/log/apache2
+      APACHE_DOCUMENT_ROOT: /var/www/html/public
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.web.rule=Host(`shop.lt`)"

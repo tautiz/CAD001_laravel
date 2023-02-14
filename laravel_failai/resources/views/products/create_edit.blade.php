@@ -21,11 +21,15 @@
             Sukūrimo forma
         @endif
     </span>
-    <form action="{{$product ? route('products.edit', $product) : route('products.store')}}" method="post">
+    <form action="{{$product ? route('products.update', $product) : route('products.store')}}"
+          method="post"
+          enctype="multipart/form-data"
+    >
         @if($product)
             @method('PUT')
         @endif
-            <x-forms.inputs :model="$product ?? (new \App\Models\Product())" fields="name,slug,description,image,category_id,color,size,price,status_id"/>
+            <x-forms.inputs :model="$product ?? (new \App\Models\Product())" fields="name,slug,description,category_id,color,size,price,status_id"/>
+            <input type="file" name="foto">
             <hr>
         <input type="submit" class="waves-effect waves-light btn" value="SEND">
         @csrf
