@@ -10,3 +10,5 @@ for (var i = 0; i < elems.length; i++) {
         M.toast({html: elems[i].innerHTML, classes: 'rounded', displayLength: 5000});
     }
 }
+
+$(".dropdown-trigger").dropdown();
