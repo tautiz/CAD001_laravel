@@ -6,7 +6,7 @@ use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ProductRequest extends FormRequest
+class ProductRequest extends FormRequest implements ProductRequestInterface
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,9 +30,9 @@ class ProductRequest extends FormRequest
             'price'       => ['required', 'integer', 'min:0'],
             'category_id' => ['required', 'integer', 'exists:categories,id'],
             'status_id'   => ['required', 'integer', 'exists:statuses,id'],
-            'slug'        => ['required', 'alpha_dash', 'min:3', 'max:255', 'unique:products,slug'],
+            'slug'        => ['required', 'alpha_dash', 'min:3', 'max:255'],
             'description' => ['nullable', 'string', 'min:3'],
-            'image'       => ['nullable'],
+            'foto'        => ['nullable', 'file', 'max:1024'],
             'color'       => ['nullable', Rule::in(Product::COLORS)],
             'size'        => ['nullable', Rule::in(Product::SIZES)],
         ];

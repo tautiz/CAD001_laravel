@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Managers\FileManager;
+use App\Managers\ProductManager;
+use App\Models\File;
 use App\Models\Product;
+use http\Client\Request;
 
 class ProductsController extends Controller
 {
-    public function __construct(protected FileManager $fileManager)
+    public function __construct(protected FileManager $fileManager, ProductManager $productManager)
     {
+        $this->productManager = $productManager;
     }
 
     public function index()
@@ -23,10 +27,7 @@ class ProductsController extends Controller
     public function store(ProductRequest $request)
     {
         $product = Product::create($request->all());
-        $file = $this->fileManager->saveFile($request, 'foto','img/products');
-        // Ši kodo dalis atsakinga uz paveiksliuko isaugojima produkto lenteleje
-        $product->image = $file->url;
-        $product->save();
+        $this->productManager->addImage($product, $request);
 
         return redirect()->route('products.show', $product);
     }
@@ -49,12 +50,7 @@ class ProductsController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         $product->update($request->all());
-        // Paimti sena paveiksla ir istrinti ji is serverio
-        // $this->fileManager->removeFile($product->image, ??, ??);
-        $file = $this->fileManager->saveFile($request, 'foto','img/products');
-        // Ši kodo dalis atsakinga uz paveiksliuko isaugojima produkto lenteleje
-        $product->image = $file->url;
-        $product->save();
+        $this->productManager->updateMainImage($product, $request);
 
         return redirect()->route('products.show', $product);
     }
@@ -63,5 +59,12 @@ class ProductsController extends Controller
     {
         $product->delete();
         return redirect()->route('products.index');
+    }
+
+    public function destroyFile(File $file)
+    {
+        $file?->deleteOrFail();
+
+        return redirect()->back()->with('success', 'File deleted');
     }
 }

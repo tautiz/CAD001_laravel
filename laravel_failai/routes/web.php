@@ -22,6 +22,7 @@ Route::group(['middleware' => SetLocale::class], function () {
 
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/', DashBoardController::class)->name('admin.dashboard');
+        Route::delete('/product/file/{file}', [ProductsController::class, 'destroyFile'])->name('product.destroy-file');
         Route::resources([
             'products'     => ProductsController::class,
             'categories'   => CategoriesController::class,
