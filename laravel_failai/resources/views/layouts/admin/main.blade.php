@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0/dist/themes/light.css"/>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0/dist/shoelace.js"></script>
 
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.50.1/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -32,13 +33,26 @@
                 }
             }
         }
+        module.exports = {
+            plugins: [require("@tailwindcss/typography"), require("daisyui")],
+            daisyui: {
+                styled: true,
+                themes: true,
+                base: true,
+                utils: true,
+                logs: true,
+                rtl: false,
+                prefix: "",
+                darkTheme: "dark",
+            },
+        }
     </script>
 
     <link rel="stylesheet" href="{{asset('/css/app.css')}}" />
     <script type="module" src="{{asset('/js/mano.js')}}"></script>
 </head>
 <body>
-<img src="{{asset('/img/background.png')}}" class="full_fit" alt="">
+{{--<img src="{{asset('/img/background.png')}}" class="full_fit" alt="">--}}
 <div class="main_grid">
     @include('layouts.admin.header')
     <div class="container">
