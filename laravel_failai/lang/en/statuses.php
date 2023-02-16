@@ -3,14 +3,15 @@
 return [
     'no_statuses' => 'No statuses',
 
-    'list'    => 'Status list',
-    'add_new' => 'Create new status',
+    'list'         => 'Status list',
+    'add_new'      => 'Create new status',
+    'statuses_new' => 'Creating new status',
 
     'name' => 'Name',
     'type' => 'Type',
 
     'types' => [
-        'null' => [
+        'null'  => [
             'null' => 'No translaction',
         ],
         'order' => [

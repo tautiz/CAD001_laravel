@@ -9,6 +9,16 @@ use App\Models\Status;
 
 class OrderController extends Controller
 {
+    /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Order::class);
+    }
+
     public function index()
     {
         $orders = Order::all();

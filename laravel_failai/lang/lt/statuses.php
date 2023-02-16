@@ -2,6 +2,7 @@
 
 return [
     'no_statuses' => 'Būsenų nėra',
+    'statuses_new' => 'Naujo statuso kūrimas',
 
     'list'    => 'Statusų sąrašas',
     'add_new' => 'Kurti naują statusą',
