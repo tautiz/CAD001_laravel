@@ -42,5 +42,5 @@ return [
     'logout'   => 'Atsijungti',
     'password' => 'Slaptažodis',
 
-
+    'no_records' => 'Įrašų nėra',
 ];

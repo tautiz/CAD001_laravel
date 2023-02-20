@@ -1,3 +1,11 @@
 @props(['disabled' => false])
 
-<input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm']) !!}>
+<div class="form-control">
+    <label class="label">
+        <span class="label-text">{{$attributes->get('help')}}</span>
+    </label>
+    <label class="input-group input-group-vertical">
+        <span class="input input-bordered h-8">{{$attributes->get('label')}}</span>
+        <input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['type'=>"text", 'placeholder'=>$attributes->get('label'), 'class'=>"input input-bordered"]) !!} />
+    </label>
+</div>

@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $order_id
  * @property string $product_name
  * @property int $product_id
+ * @property Product $product
  * @property int $quantity
  * @property string $price
  * @property int $status_id

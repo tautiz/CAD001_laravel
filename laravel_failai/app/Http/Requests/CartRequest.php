@@ -4,6 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class CartRequest
+ *
+ * @package App\Http\Requests
+ *
+ * @property int $product_id
+ * @property int $quantity
+ */
 class CartRequest extends FormRequest
 {
     /**

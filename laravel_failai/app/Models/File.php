@@ -36,11 +36,15 @@ class File extends Model
         'model_id',
         'model_type',
     ];
-    public static function boot() {
+
+    public static function boot()
+    {
         parent::boot();
 
         self::deleting(function ($value) {
-            unlink($value->path);
+            if (file_exists(public_path($value->path))) {
+                unlink($value->path);
+            }
         });
     }
 

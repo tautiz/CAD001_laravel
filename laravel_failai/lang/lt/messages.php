@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'welcome'                            => 'Sveiki apsilankę',
+    'welcome'                            => 'Sveiki apsilankę :duomenys | Sveikas apsilankęs :duomenys',
     'password_confirmation'              => 'Pakartokite slaptažodį',
     'remember_me'                        => 'Prisiminti mane',
     'forgot_password'                    => 'Pamiršote slaptažodį?',
@@ -18,4 +18,6 @@ return [
     'no_products_in_status'              => 'Šioje būsenoje produktų nėra',
     'no_products_in_category_and_status' => 'Šioje kategorijoje ir būsenoje produktų nėra',
     'no_products_in_search'              => 'Pagal paieškos kriterijus produktų nėra',
+
+    'product_added_to_cart' => 'Produktas pridėtas į krepšelį',
 ];

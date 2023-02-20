@@ -21,5 +21,5 @@ return [
     'status_id'   => 'Status ID',
     'status'      => 'Status',
 
-    'no_products' => 'Produktų nėra',
+    'no_products' => 'No products found, please consider stocking your warehouse',
 ];
