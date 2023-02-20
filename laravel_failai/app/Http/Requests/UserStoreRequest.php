@@ -4,12 +4,19 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class UserUpdateRequest
+ * @package App\Http\Requests
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property string $password_confirmation
+ * @property string $role
+ */
 class UserStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {

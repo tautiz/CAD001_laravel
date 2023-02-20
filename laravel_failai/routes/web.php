@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\PersonController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\StatusController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -20,6 +21,7 @@ Route::group(['middleware' => SetLocale::class], function () {
     Route::get('/', HomeController::class);
     Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('product.show');
     Route::get('/category/{category:slug}', [CategoryController::class, 'show'])->name('category.show');
+    Route::post('product/add', [CartController::class, 'create'])->name('product.add_to_cart');
 
     Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], function () {
         Route::get('/', DashBoardController::class)->name('dashboard');

@@ -4,6 +4,15 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class UserUpdateRequest
+ * @package App\Http\Requests
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property string $password_confirmation
+ * @property string $role
+ */
 class UserUpdateRequest extends FormRequest
 {
     /**
@@ -26,7 +35,7 @@ class UserUpdateRequest extends FormRequest
         return [
             'name'     => ['required', 'string', 'min:3', 'max:255'],
             'email'    => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $this->user->id ],
-//            'password' => ['sometimes', 'string', 'min:8', 'confirmed'],
+            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
         ];
     }
 }

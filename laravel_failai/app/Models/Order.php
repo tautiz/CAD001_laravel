@@ -29,6 +29,8 @@ class Order extends Model
 {
     use HasFactory;
 
+    public const STATUS_NEW = 'new';
+
     protected $fillable = [
         'shipping_address_id',
         'billing_address_id',

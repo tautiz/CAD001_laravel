@@ -24,7 +24,6 @@ class OrderDetails extends Model
     use HasFactory;
 
     protected $guarded = [
-        'price',
         'status_id',
     ];
 
@@ -33,6 +32,7 @@ class OrderDetails extends Model
         'product_name',
         'product_id',
         'quantity',
+        'price',
     ];
 
     public function order(): BelongsTo
