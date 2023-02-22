@@ -18,4 +18,9 @@ return [
     'no_products_in_status'              => 'Šioje būsenoje produktų nėra',
     'no_products_in_category_and_status' => 'Šioje kategorijoje ir būsenoje produktų nėra',
     'no_products_in_search'              => 'Pagal paieškos kriterijus produktų nėra',
+
+
+    'product_added_to_cart'     => 'Product :product added to cart',
+    'product_removed_from_cart' => 'Product :product removed from cart',
+    'cart_updated'              => 'Cart updated',
 ];

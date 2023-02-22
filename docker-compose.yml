@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.9'
 services:
   web:
     image: tautiz/web4study
@@ -35,6 +35,28 @@ services:
       - traefik-gateway
     labels:
         - "traefik.enable=false"
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: 'mailhog'
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.main.rule=Host(`hog.com`)"
+    networks:
+      - traefik-gateway
+
+  node:
+    image: "node:14.15.4-alpine"
+    user: "node"
+    working_dir: /var/www/html
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./laravel_failai:/var/www/html/
+    command: sh -c "npm run dev"
 
 volumes:
   myapp:

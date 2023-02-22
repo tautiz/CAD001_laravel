@@ -116,12 +116,17 @@ class User extends Authenticatable implements MustVerifyEmail
 
 //        $order = Order::firstOrCreate(['status_id', $status->id, 'user_id' => $this->id]);
 
-        return $order;
+        return $order ?? new Order();
     }
 
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === self::ROLE_ADMIN;
     }
 
     public function __toString(): string

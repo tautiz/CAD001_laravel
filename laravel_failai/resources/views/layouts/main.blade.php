@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="dark" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="dark" class="dark" data-mode="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,25 +18,33 @@
 
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.50.1/dist/full.css" rel="stylesheet" type="text/css"/>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="{{ mix('/css/app.css') }}" rel="stylesheet" type="text/css"/>
+    <script defer src="{{ mix('/js/app.js') }}"></script>
     <script>
-        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark')
-        } else {
-            document.documentElement.classList.remove('dark')
+        const toggleSwitch = document.querySelector('.darkmode-switch input[type="checkbox"]');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+
+            if (currentTheme === 'dark') {
+                toggleSwitch.checked = true;
+            }
         }
 
-        // Whenever the user explicitly chooses light mode
-        localStorage.theme = 'light'
+        function switchTheme(e) {
+            if (e.target.checked) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            }
+        }
 
-        // Whenever the user explicitly chooses dark mode
-        localStorage.theme = 'dark'
-
-        // Whenever the user explicitly chooses to respect the OS preference
-        localStorage.removeItem('theme')
+        toggleSwitch.addEventListener('change', switchTheme, false);
     </script>
 
-    <link rel="stylesheet" href="{{asset('/css/app.css')}}"/>
     <script type="module" src="{{asset('/js/mano.js')}}"></script>
 </head>
 <body>
