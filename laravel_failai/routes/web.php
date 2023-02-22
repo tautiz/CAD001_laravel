@@ -14,6 +14,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\IsPersonnel;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 
@@ -29,7 +30,7 @@ Route::group(['middleware' => SetLocale::class], function () {
         Route::delete('product/{product}/delete', [CartController::class, 'destroy'])->name('cart.product_remove');
     });
 
-    Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], function () {
+    Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', IsPersonnel::class]], function () {
         Route::get('/', DashBoardController::class)->name('dashboard');
         Route::delete('/product/file/{file}', [ProductsController::class, 'destroyFile'])->name('product.destroy-file');
         Route::resources([

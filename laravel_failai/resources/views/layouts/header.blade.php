@@ -69,7 +69,7 @@
                             <li>
                                 <span>{{auth()?->user()?->email}}</span>
                             </li>
-                            @if (auth()?->user()?->isAdmin())
+                            @if (auth()?->user()?->isPersonnel())
                                 <li>
                                     <a href="{{route('dashboard')}}">
                                         {{ __('Dashboard') }}
