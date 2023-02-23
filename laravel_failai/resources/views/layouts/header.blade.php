@@ -64,6 +64,15 @@
 {{--                            <label for="darkmode-switch">Dark mode</label>--}}
 {{--                        </div>--}}
 {{--                    </div>--}}
+
+
+
+
+
+
+
+
+
                     @auth
                         <ul class="hidden w-8/12 md:flex items-center justify-center space-x-8">
                             <li>
@@ -92,6 +101,7 @@
                             </li>
                         </ul>
                     @endauth
+
                     @guest()
                         <ul class="hidden w-8/12 md:flex items-center justify-center space-x-8">
                             <li>
@@ -106,6 +116,14 @@
                             </li>
                         </ul>
                     @endguest
+
+
+
+
+
+
+
+
 
                     <div class="md:w-2/12 justify-end flex items-center space-x-4 xl:space-x-8">
                         <div class="hidden lg:flex items-center">

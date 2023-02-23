@@ -18,7 +18,8 @@ class Status extends Model
 {
     use HasFactory;
 
-    public const TYPES = ['order', 'payment', 'category', 'user', 'product', 'order_details'];
+    public const        TYPES     = ['order', 'payment', 'category', 'user', 'product', 'order_details'];
+    public const        STATE_NEW = 'new';
 
     protected $fillable = [
         'name',

@@ -141,7 +141,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isPersonnel(): bool
     {
-        return in_array($this->role, [self::ROLE_ADMIN, self::ROLE_MANAGER, self::ROLE_PM]);
+        return in_array($this->role,
+            [self::ROLE_ADMIN, self::ROLE_MANAGER, self::ROLE_PM]);
     }
 
     public function __toString(): string

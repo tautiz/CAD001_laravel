@@ -25,8 +25,8 @@ class OrderPolicy
     public function view(User $user, Order $order): Response|bool
     {
         return $user->id === $order->user_id
-        || $user->role === User::ROLE_MANAGER
-        || $user->role === User::ROLE_ADMIN
+        || $user->isManager()
+        || $user->isAdmin()
             ? Response::allow()
             : Response::deny(__('You do not own this order.'));
     }

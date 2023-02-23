@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\OrderCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
@@ -30,9 +31,19 @@ class OrderController extends Controller
         $order = Order::create(
             $request->all()
             + [
-                'status_id' => Status::query()->where(['type' => 'order', 'name' => 'Naujas'])->first()->id,
+                'status_id' => Status::query()->where(['type' => 'order', 'name' => Status::STATE_NEW])->first()->id,
             ],
         );
+
+        $this->dispatch(new OrderCreated($order));
+
+        // Perkelti uzsakyma i VMI sistema
+        // Perkelti uzsakyma i ERP sistema
+        // Perkelti uzsakyma i CRM sistema
+        // Perkelti uzsakyma i PVM sistema
+        // Informuoti kasos aparata spausdinti kvita
+
+
         return redirect()->route('orders.show', $order);
     }
 
