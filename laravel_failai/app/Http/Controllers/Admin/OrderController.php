@@ -37,13 +37,6 @@ class OrderController extends Controller
 
         $this->dispatch(new OrderCreated($order));
 
-        // Perkelti uzsakyma i VMI sistema
-        // Perkelti uzsakyma i ERP sistema
-        // Perkelti uzsakyma i CRM sistema
-        // Perkelti uzsakyma i PVM sistema
-        // Informuoti kasos aparata spausdinti kvita
-
-
         return redirect()->route('orders.show', $order);
     }
 

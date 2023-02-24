@@ -3,12 +3,14 @@
 namespace App\Providers;
 
 use App\Events\OrderCreated;
+use App\Events\OrderUpdated;
 use App\Listeners\SendNotificationToManager;
-use App\Models\User;
+use App\Listeners\SendNotificationToPM;
+use App\Models\Order;
+use App\Observers\OrderObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -24,24 +26,23 @@ class EventServiceProvider extends ServiceProvider
         OrderCreated::class => [
             SendNotificationToManager::class,
         ],
+        OrderUpdated::class => [
+            SendNotificationToPM::class,
+        ],
     ];
 
     /**
      * Register any events for your application.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
-        //
+        Order::observe(OrderObserver::class);
     }
 
     /**
      * Determine if events and listeners should be automatically discovered.
-     *
-     * @return bool
      */
-    public function shouldDiscoverEvents()
+    public function shouldDiscoverEvents(): bool
     {
         return false;
     }
