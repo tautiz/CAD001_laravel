@@ -1,0 +1,21 @@
+<?php
+
+namespace DummyVarduSritis;
+
+use App\Repositories\DummyRepository;
+
+class DummyClass
+{
+    protected $repository;
+    /**
+     * Instantiate manager
+     *
+     * @param DummyRepository $repository
+     */
+    public function __construct(DummyRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    // Your methods for repository
+}
