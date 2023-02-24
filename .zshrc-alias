@@ -1,0 +1,11 @@
+alias ll='ls -la'
+alias ..='cd ..'
+
+alias art='php artisan'
+alias tinker='php artisan tinker'
+alias migrate='php artisan migrate'
+alias routes='php artisan route:list'
+alias croutes='php artisan route:clear'
+alias rmview="find storage/framework/views -type f -not -path '*/.git/*' -not -name '.gitignore' | xargs rm"
+alias opt='rmview && php artisan optimize'
+alias zshrc='source ~/.zshrc-alias'

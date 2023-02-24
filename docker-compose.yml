@@ -4,6 +4,7 @@ services:
     image: tautiz/web4study
     volumes:
       - ./laravel_failai:/var/www/html/
+      - ./.zshrc-alias:/root/.zshrc-alias:ro
     depends_on:
       - db
     environment:
