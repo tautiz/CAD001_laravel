@@ -18,7 +18,6 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $products = Product::latest()->paginate(4);
-        return view('home', ['products' => $products]);
+        return view('home');
     }
 }
