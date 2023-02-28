@@ -17,12 +17,12 @@ class PersonController extends Controller
     public function index()
     {
         $persons = Person::all();
-        return view('person.index', ['persons' => $persons]);
+        return view('admin.person.index', ['persons' => $persons]);
     }
 
     public function create()
     {
-        return view('person.create');
+        return view('admin.person.create');
     }
 
     public function store(PersonStoreRequest $request)
@@ -33,12 +33,12 @@ class PersonController extends Controller
 
     public function show(Person $person)
     {
-        return view('person.show', ['person' => $person]);
+        return view('admin.person.show', ['person' => $person]);
     }
 
     public function edit(Person $person)
     {
-        return view('person.edit', compact('person'));
+        return view('admin.person.edit', compact('person'));
     }
 
     public function update(PersonUpdateRequest $request, Person $person)

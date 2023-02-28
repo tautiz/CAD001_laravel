@@ -11,7 +11,7 @@ class StatusController extends Controller
     public function index()
     {
         $statuses = Status::all();
-        return view('status.index', compact('statuses'));
+        return view('admin.status.index', compact('statuses'));
     }
 
     public function store(StatusRequest $request)
@@ -22,17 +22,17 @@ class StatusController extends Controller
 
     public function create()
     {
-        return view('status.create');
+        return view('admin.status.create');
     }
 
     public function show(Status $status)
     {
-        return view('status.show', compact('status'));
+        return view('admin.status.show', compact('status'));
     }
 
     public function edit(Status $status)
     {
-        return view('status.edit', compact('status'));
+        return view('admin.status.edit', compact('status'));
     }
 
     public function update(StatusRequest $request, Status $status)

@@ -23,7 +23,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::all();
-        return view('order.index', compact('orders'));
+        return view('admin.order.index', compact('orders'));
     }
 
     public function store(OrderRequest $request)
@@ -42,17 +42,17 @@ class OrderController extends Controller
 
     public function create()
     {
-        return view('order.create');
+        return view('admin.order.create');
     }
 
     public function show(Order $order)
     {
-        return view('order.show', compact('order'));
+        return view('admin.order.show', compact('order'));
     }
 
     public function edit(Order $order)
     {
-        return view('order.edit', compact('order'));
+        return view('admin.order.edit', compact('order'));
     }
 
     public function update(OrderRequest $request, Order $order)

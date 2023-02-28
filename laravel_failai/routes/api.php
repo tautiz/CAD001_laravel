@@ -21,4 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('top_produktai', [ProductsController::class, 'index']);
-Route::post('add-to-cart', [CartController::class, 'store'])->name('api.add-to-cart');
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('add-to-cart', [CartController::class, 'store'])->name('api.add-to-cart');
+});

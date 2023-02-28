@@ -41,7 +41,7 @@ class CartController extends Controller
 
     public function show()
     {
-        return view('order.order-summary', [
+        return view('public.order-summary', [
             'cart' => auth()->user()?->getLatestCart() ?? new Order(),
         ]);
     }

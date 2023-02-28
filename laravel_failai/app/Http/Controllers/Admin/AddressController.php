@@ -11,7 +11,7 @@ class AddressController extends Controller
     public function index()
     {
         $addresses = Address::all();
-        return view('address.index', ['addresses' => $addresses]);
+        return view('admin.address.index', ['addresses' => $addresses]);
     }
 
     public function store(AddressRequest $request)
@@ -22,17 +22,17 @@ class AddressController extends Controller
 
     public function create()
     {
-        return view('address.create');
+        return view('admin.address.create');
     }
 
     public function show(Address $address)
     {
-        return view('address.show', ['address' => $address]);
+        return view('admin.address.show', ['address' => $address]);
     }
 
     public function edit(Address $address)
     {
-        return view('address.edit', compact('address'));
+        return view('admin.address.edit', compact('address'));
     }
 
     public function update(AddressRequest $request, Address $address)

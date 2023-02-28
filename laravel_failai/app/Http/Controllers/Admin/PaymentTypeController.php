@@ -11,7 +11,7 @@ class PaymentTypeController extends Controller
     public function index()
     {
         $paymentTypes = PaymentType::all();
-        return view('payment_type.index', compact('paymentTypes'));
+        return view('admin.payment_type.index', compact('paymentTypes'));
     }
 
     public function store(PaymentsTypeRequest $request)
@@ -22,17 +22,17 @@ class PaymentTypeController extends Controller
 
     public function create()
     {
-        return view('payment_type.create');
+        return view('admin.payment_type.create');
     }
 
     public function show(PaymentType $paymentType)
     {
-        return view('payment_type.show', compact('paymentType'));
+        return view('admin.payment_type.show', compact('paymentType'));
     }
 
     public function edit(PaymentType $paymentType)
     {
-        return view('payment_type.edit', compact('paymentType'));
+        return view('admin.payment_type.edit', compact('paymentType'));
     }
 
     public function update(PaymentsTypeRequest $request, PaymentType $paymentType)

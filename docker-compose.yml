@@ -1,10 +1,11 @@
 version: '3.9'
 services:
   web:
-    image: tautiz/web4study
+    image: tautiz/web4study:latest
     volumes:
       - ./laravel_failai:/var/www/html/
       - ./.zshrc-alias:/root/.zshrc-alias:ro
+    user: web:web
     depends_on:
       - db
     environment:
@@ -12,6 +13,8 @@ services:
       APPLICATION_ENV: development
       APACHE_LOG_DIR: /var/log/apache2
       APACHE_DOCUMENT_ROOT: /var/www/html/public
+      APACHE_RUN_USER: web
+      APACHE_RUN_GROUP: web
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.web.rule=Host(`shop.lt`)"
@@ -24,7 +27,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     ports:
-      - 3306:3306
+      - "3306:3306"
     volumes:
       - myapp:/var/lib/mysql
     environment:

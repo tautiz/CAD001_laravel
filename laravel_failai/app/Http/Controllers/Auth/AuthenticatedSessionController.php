@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login');
+        return view('public.auth.login');
     }
 
     /**
@@ -29,6 +29,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if ($request->user()->tokens()->count() == 0) {
+            $request->user()->createToken('session');
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
@@ -37,6 +41,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        // Revoke the token that was used to authenticate the current request...
+        $request->user()->currentAccessToken()->delete();
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

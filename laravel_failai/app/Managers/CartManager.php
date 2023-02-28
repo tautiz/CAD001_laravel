@@ -24,7 +24,7 @@ class CartManager
     public function addToCart(CartRequest $request): void
     {
         $cart = $this->getCart();
-
+dd($cart);
         $product = $this->productsManager->getById($request->product_id);
 
         $cartItem = $this->getCartItem($cart, $product);
@@ -51,6 +51,7 @@ class CartManager
     {
         /** @var User $user */
         $user = auth()->user();
+dd('User: ', $user);
         return $user?->getLatestCart() ?? new Order();
     }
 

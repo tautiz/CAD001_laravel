@@ -25,7 +25,7 @@
                     <button type="submit" class="dark:bg-gray-800 dark:text-gray-300 font-medium text-base leading-4 text-gray-800 bg-white py-3 w-full">Add to cart</button>
                     @csrf
                 </form>
-                <button onclick="window.location.href = '{{route('product.show', $product)}}'" class="bg-transparent font-medium text-base leading-4 border-2 border-white py-3 w-full mt-2 text-white">Quick View</button>
+                <button onclick="window.location.href = '{{route('category-products.show',[$product->category,  $product])}}'" class="bg-transparent font-medium text-base leading-4 border-2 border-white py-3 w-full mt-2 text-white">Quick View</button>
             </div>
         </div>
 

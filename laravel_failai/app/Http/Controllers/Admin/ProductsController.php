@@ -21,7 +21,7 @@ class ProductsController extends Controller
     {
         $products = Product::query()->with(['category', 'status'])->get();
 
-        return view('products.index', compact('products'));
+        return view('admin.products.index', compact('products'));
     }
 
     public function store(ProductRequest $request)
@@ -34,17 +34,17 @@ class ProductsController extends Controller
 
     public function create()
     {
-        return view('products.create_edit');
+        return view('admin.products.create_edit');
     }
 
     public function show(Product $product)
     {
-        return view('products.show', ['product' => $product]);
+        return view('admin.products.show', ['product' => $product]);
     }
 
     public function edit(Product $product)
     {
-        return view('products.create_edit', compact('product'));
+        return view('admin.products.create_edit', compact('product'));
     }
 
     public function update(ProductRequest $request, Product $product)

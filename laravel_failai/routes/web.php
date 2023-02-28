@@ -10,24 +10,27 @@ use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\StatusController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CategoryProductsController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\IsPersonnel;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => SetLocale::class], function () {
-    Route::get('/', HomeController::class)->name('home');
-    Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('product.show');
-    Route::get('/category/{category:slug}', [CategoryController::class, 'show'])->name('category.show');
+    require __DIR__ . '/auth.php';
 
-    Route::group(['prefix' => 'cart'], function () {
-        Route::get('/', [CartController::class, 'show'])->name('order.cart');
-        Route::post('product/add', [CartController::class, 'create'])->name('product.add_to_cart');
-        Route::post('product/{product}/update', [CartController::class, 'update'])->name('cart.product_update');
-        Route::delete('product/{product}/delete', [CartController::class, 'destroy'])->name('cart.product_remove');
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+        Route::post('/tokens/create', function (Request $request) {
+            $token = $request->user()->createToken($request->token_name);
+
+            return ['token' => $token->plainTextToken];
+        });
     });
 
     Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', IsPersonnel::class]], function () {
@@ -44,13 +47,19 @@ Route::group(['middleware' => SetLocale::class], function () {
             'paymentTypes' => PaymentTypeController::class,
         ]);
     });
+
+    Route::group(['prefix' => 'cart'], function () {
+        Route::get('/', [CartController::class, 'show'])->name('order.cart');
+        Route::post('product/add', [CartController::class, 'create'])->name('product.add_to_cart');
+        Route::post('product/{product}/update', [CartController::class, 'update'])->name('cart.product_update');
+        Route::delete('product/{product}/delete', [CartController::class, 'destroy'])->name('cart.product_remove');
+    });
+
+    Route::get('/', HomeController::class)->name('home');
+    Route::get('/kontaktai', [LandingPageController::class, 'contacts'])->name('contacts');
+    Route::get('/apie-mus', [LandingPageController::class, 'aboutUs'])->name('about-us');
+
+    // WARNING: These routes must be last in this group
+    Route::get('/{category:slug}', [CategoryProductsController::class, 'listProducts'])->name('category-products.list');
+    Route::get('/{category:slug}/{product:slug}', [CategoryProductsController::class, 'showProduct'])->name('category-products.show');
 });
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__ . '/auth.php';
-
