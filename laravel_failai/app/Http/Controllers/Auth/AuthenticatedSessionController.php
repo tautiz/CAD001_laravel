@@ -41,8 +41,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        // Revoke the token that was used to authenticate the current request...
-        $request->user()->currentAccessToken()->delete();
+        auth()->user()->tokens()->where('tokenable_id', auth()->user()->id)->delete();
 
         Auth::guard('web')->logout();
 

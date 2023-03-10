@@ -44,3 +44,20 @@ img.logo {
     height: 64px;
     mix-blend-mode: multiply;
 }
+
+
+.admin {
+    background-color: red;
+}
+
+.admin > h3 {
+    color: white;
+}
+
+
+.useris {
+    background-color: green;
+}
+.useris > h3 {
+    color: blue;
+}

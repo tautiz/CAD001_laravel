@@ -22,13 +22,19 @@
     <script defer src="{{ mix('/js/app.js') }}"></script>
 
     <script type="module" src="{{asset('/js/mano.js')}}"></script>
+
+    @yield('css_files')
 </head>
 <body>
 <div class="main_grid">
     @include('public.layouts.header')
     <div class="lg:px-8 justify-center">
         @include('public.layouts.flash-message')
-        @yield('content', 'Default page content')
+        @hasSection('admin_content')
+            @yield('admin_content')
+        @else
+            @yield('content', 'Missing page content')
+        @endif
     </div>
     <br>
     @include('public.layouts.footer')

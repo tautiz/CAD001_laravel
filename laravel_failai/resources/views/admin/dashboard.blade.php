@@ -1,16 +1,14 @@
 @extends('admin.layouts.main')
 
-
 @section('title', 'Dashboard')
 
 @section('content')
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
-                    Cia bus admin dashboard:
+                    <div class="divider">Cia bus admin dashboard</div>
                     <h2>Orders</h2>
                     @foreach($latestOrders as $order)
                         <div class="card">
@@ -27,7 +25,7 @@
                             </div>
                         </div>
                     @endforeach
-
+                    <hr>
                     <h2>Products</h2>
                     @foreach($latestProducts as $product)
                         <div class="card">
@@ -45,7 +43,7 @@
                             </div>
                         </div>
                     @endforeach
-
+                    <hr>
                     <h2>Users</h2>
                     @foreach($latestUsers as $user)
                         <div class="card">

@@ -50,8 +50,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="2xl:container 2xl:mx-auto">
         <div class="bg-gray-50 dark:bg-gray-900 text-center lg:py-10 md:py-8 py-6">
             <p class="w-10/12 mx-auto md:w-full font-semibold lg:text-4xl text-3xl lg:leading-9 md:leading-7 dark:text-white leading-9 text-center text-gray-800">
@@ -84,5 +82,8 @@
             </div>
         </div>
     </div>
-
+@endsection
+@section('css_files')
+    @parent
+    <link rel="stylesheet" href="{{asset('css/home.css')}}">
 @endsection

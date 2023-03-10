@@ -32,12 +32,10 @@
                     </button>
                 </div>
             </div>
-            <!-- For md screen size -->
-
             <!-- For large screens -->
-            <div class="dark:bg-gray-900 bg-gray-50 px-6 py-9">
+            <div class="dark:bg-gray-900 light:bg-gray-50 px-6 py-9">
                 <div class="container mx-auto flex items-center justify-between">
-                    <h1 class="md:w-2/12 cursor-pointer text-gray-800 dark:text-white" aria-label="the Crib.">
+                    <h1 class="md:w-2/12 cursor-pointer text-gray-800 dark:text-white" aria-label="the Crib." data-theme="dark">
                         <img class="dark:hidden"
                              src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg1.svg" alt="logo">
                         <img class="dark:block hidden"
@@ -46,11 +44,11 @@
                     <ul class="hidden w-8/12 md:flex items-center justify-center space-x-8">
                         <li>
                             <a href="{{route('home')}}"
-                               class="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Home</a>
+                               class="dark:text-white text-base focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Home</a>
                         </li>
                         <li>
                             <a href="{{route('category-products.list', 'elektronika')}}"
-                               class="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Elektronika</a>
+                               class="dark:text-white text-base focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Elektronika</a>
                         </li>
                         {{--                        @foreach($categories as $category)--}}
                         {{--                            <li>--}}
@@ -102,14 +100,6 @@
                             </li>
                         </ul>
                     @endguest
-
-
-
-
-
-
-
-
 
                     <div class="md:w-2/12 justify-end flex items-center space-x-4 xl:space-x-8">
                         <div class="hidden lg:flex items-center">
@@ -172,7 +162,7 @@
             </div>
             <!-- For small screen -->
             <div id="mobile-menu"
-                 class="hidden absolute dark:bg-gray-900 z-10 inset-0 md:hidden bg-white flex flex-col h-screen w-full">
+                 class="hidden absolute dark:bg-gray-900 z-10 inset-0 md:hidden light:bg-white flex flex-col h-screen w-full">
                 <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-4 p-4">
                     <div class="flex items-center space-x-3">
                         <div>
@@ -287,6 +277,7 @@
                     </ul>
                 </div>
             </div>
+            @yield('customers_header')
         </div>
     </div>
 </div>

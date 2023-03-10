@@ -7,9 +7,8 @@ services:
     user: web:web
     ports:
       - "80:80"
-    depends_on:
-      - db
     environment:
+      PHP_IDE_CONFIG: 'serverName=laravel.local'
       APACHE_SERVER_NAME: laravel.local
       APPLICATION_ENV: development
       APACHE_LOG_DIR: /var/log/apache2
@@ -30,6 +29,12 @@ services:
       MYSQL_DATABASE: laravel
       MYSQL_USER: devuser
       MYSQL_PASSWORD: devpass
+
+  mailpit:
+      image: axllent/mailpit:latest
+      ports:
+        - "8025:8025"
+        - "1025:1025"
 
 volumes:
   myapp:
